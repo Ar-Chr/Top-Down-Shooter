@@ -1,0 +1,4 @@
+repository "Top-Down Shooter@R_60N@cloud"
+  path "/"
+    br "/main"
+    co "/main"
