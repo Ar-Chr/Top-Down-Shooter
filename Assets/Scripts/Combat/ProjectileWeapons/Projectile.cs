@@ -43,16 +43,15 @@ public class Projectile : MonoBehaviour
     {
         float time = Time.deltaTime;
 
-        Vector3 movement =
-            velocity * time +
-            Physics.gravity * time * time / 2;
+        Vector3 movement = velocity * time;
 
         transform.position += movement;
     }
 
     private void CheckHit()
     {
-        if (gun.GunStats.AmmoStats.Radius == 0)
+        float bulletRadius = gun.GunStats.AmmoStats.Radius;
+        if (bulletRadius == 0)
         {
             if (Physics.Linecast(prevPosition, transform.position, out RaycastHit hit, layerMask))
             {
@@ -62,7 +61,7 @@ public class Projectile : MonoBehaviour
         else
         {
             Vector3 direction = transform.position - prevPosition;
-            if (Physics.SphereCast(prevPosition, gun.GunStats.AmmoStats.Radius, direction, out RaycastHit hit, direction.magnitude, layerMask))
+            if (Physics.SphereCast(prevPosition, bulletRadius, direction, out RaycastHit hit, direction.magnitude, layerMask))
             {
                 Hit(hit);
             }

@@ -2,27 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Coggers
+public class OnProjectileHit : MonoBehaviour
 {
-    public class OnProjectileHit : MonoBehaviour
+    [SerializeField] private Projectile projectile;
+    [Space]
+    [SerializeField] private TriggerActionComposite genericActions;
+    [SerializeField] private TriggerActionComposite<GameObject> gameObjectActions;
+
+    private void Start()
     {
-        [SerializeField] private Projectile projectile;
-        [Space]
-        [SerializeField] private TriggerActionComposite genericActions;
-        [SerializeField] private TriggerActionComposite<Health> healthActions;
+        projectile.OnHit += Hit;
+    }
 
-        private void Start()
-        {
-            projectile.OnHit += Hit;
-        }
-
-        private void Hit(RaycastHit hit)
-        {
-            if (hit.collider.gameObject.TryGetComponent(out Health health))
-            {
-                genericActions.Execute();
-                healthActions.Execute(health);
-            }
-        }
+    private void Hit(RaycastHit hit)
+    {
+        genericActions.Execute();
+        gameObjectActions.Execute(hit.collider.gameObject);
     }
 }

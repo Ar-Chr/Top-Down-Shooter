@@ -10,7 +10,7 @@ public class HealthDisplay : MonoBehaviour
 
     private void Start()
     {
-        health.TookDamage += UpdateHealth;
+        health.HealthChanged += UpdateHealth;
     }
 
     private void UpdateHealth()

@@ -18,6 +18,7 @@ public class Input : MonoBehaviour
 
     public bool Shoot { get; private set; }
     public bool Aim { get; private set; }
+    public bool Reload { get; private set; }
 
     private PlayerInput input;
 
@@ -70,6 +71,10 @@ public class Input : MonoBehaviour
         input.PlayerControls.Aim.started += HandleAimChanged;
         input.PlayerControls.Aim.performed += HandleAimChanged;
         input.PlayerControls.Aim.canceled += HandleAimChanged;
+
+        input.PlayerControls.Reload.started += HandleReloadChanged;
+        input.PlayerControls.Reload.performed += HandleReloadChanged;
+        input.PlayerControls.Reload.canceled += HandleReloadChanged;
     }
 
     private void HandleMoveChanged(InputAction.CallbackContext context)
@@ -106,5 +111,10 @@ public class Input : MonoBehaviour
     private void HandleAimChanged(InputAction.CallbackContext context)
     {
         Aim = context.ReadValue<float>() == 1;
+    }
+
+    private void HandleReloadChanged(InputAction.CallbackContext context)
+    {
+        Reload = context.ReadValue<float>() == 1;
     }
 }

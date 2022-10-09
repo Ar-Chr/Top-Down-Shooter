@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GunStats
   m_EditorClassIdentifier: 
   ammoStats: {fileID: 11400000, guid: afbd48ee80e9dee43abfd02095a46ff1, type: 2}
-  muzzleVelocityModifier: 1
-  cooldown: 0.4
+  muzzleVelocityModifier: 1.2
+  cooldown: 0.8
+  magazineSize: 15
